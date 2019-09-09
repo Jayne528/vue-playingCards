@@ -1,0 +1,89 @@
+@mixin size($w,$h:$w) {
+    width: $w;
+    height: $h;
+}
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+$cardWidth: 15vw;
+@mixin setLeftPos($l,$w:$cardWidth) {
+  left: calc(#{$l} - #{$w/2});
+}
+
+html,body {
+    background-color: #102438;
+    color: #fff;
+    @include flexCenter;
+}
+.cards {
+   @include size(100%, 40vh);
+   cursor: pointer;
+   .card {
+    @include size($cardWidth, $cardWidth*1.4);
+    position: absolute;
+    top: 35%;
+    @include setLeftPos(30%);
+    transform-style: preserve-3d;
+    transform: rotateY(0);
+    transition: 0.8s;
+    box-shadow: 0px 10px 30px rgba(black,0.3);
+    .face {
+        background-color: #fff;
+        backface-visibility: hidden;
+        color: black;
+        @include size(100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 5px;
+        &.front {
+            transform: rotateY(180deg);
+            @include flexCenter;
+            font-size: 60px;
+        }
+        &.back {
+            padding: 10px;
+            box-sizing: border-box;
+            $colorRed: #ed4747;
+            &:before {
+                content: '';
+                display: block;
+                @include size(100%);
+                border: 3px solid $colorRed;
+                box-sizing: border-box;
+                background-image: linear-gradient(-60deg,transparent 40%,rgba($colorRed,1) 40%,rgba($colorRed,1) 60%,transparent 60%), linear-gradient(60deg,transparent 40%,rgba($colorRed,1) 40%,rgba($colorRed,1) 60%,transparent 60%);
+                background-size: 8px 8px;
+      
+            }
+        }
+    }
+    &.open {
+        transform: rotateY(180deg);
+    }
+    @for $i from 1 through 4 {
+        &[data-order="#{$i}"] {
+            @include setLeftPos(#{$i*20%})
+        }
+    }
+    &:hover {
+        top: 30%;
+    }
+   }
+   &.gather {
+       .card {
+            top: 20%;
+            @include setLeftPos(50%);
+            transform: rotate(360deg);
+        }
+        &:hover {
+            @for $i from 1 through 4 {
+                .card[data-order="#{$i}"] {
+                    transform: rotate(#{$i*7+360}deg);
+                }
+            }
+        }
+   }
+}

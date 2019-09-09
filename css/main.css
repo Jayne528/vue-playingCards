@@ -1,0 +1,133 @@
+html, body {
+  background-color: #102438;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cards {
+  width: 100%;
+  height: 40vh;
+  cursor: pointer;
+}
+
+.cards .card {
+  width: 15vw;
+  height: 21vw;
+  position: absolute;
+  top: 35%;
+  left: calc(30% - 7.5vw);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: rotateY(0);
+          transform: rotateY(0);
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+  -webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cards .card .face {
+  background-color: #fff;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  color: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+
+.cards .card .face.front {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 60px;
+}
+
+.cards .card .face.back {
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.cards .card .face.back:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #ed4747;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: linear-gradient(-60deg, transparent 40%, #ed4747 40%, #ed4747 60%, transparent 60%), linear-gradient(60deg, transparent 40%, #ed4747 40%, #ed4747 60%, transparent 60%);
+  background-size: 8px 8px;
+}
+
+.cards .card.open {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.cards .card[data-order="1"] {
+  left: calc(20% - 7.5vw);
+}
+
+.cards .card[data-order="2"] {
+  left: calc(40% - 7.5vw);
+}
+
+.cards .card[data-order="3"] {
+  left: calc(60% - 7.5vw);
+}
+
+.cards .card[data-order="4"] {
+  left: calc(80% - 7.5vw);
+}
+
+.cards .card:hover {
+  top: 30%;
+}
+
+.cards.gather .card {
+  top: 20%;
+  left: calc(50% - 7.5vw);
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.cards.gather:hover .card[data-order="1"] {
+  -webkit-transform: rotate(367deg);
+          transform: rotate(367deg);
+}
+
+.cards.gather:hover .card[data-order="2"] {
+  -webkit-transform: rotate(374deg);
+          transform: rotate(374deg);
+}
+
+.cards.gather:hover .card[data-order="3"] {
+  -webkit-transform: rotate(381deg);
+          transform: rotate(381deg);
+}
+
+.cards.gather:hover .card[data-order="4"] {
+  -webkit-transform: rotate(388deg);
+          transform: rotate(388deg);
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 事件觸發與使用者互動</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="control">
+            <label for="">展開分散
+                <input type="checkbox" v-model="gather">
+            </label><br>
+            <label for="" v-for="(card,mid) in cards">{{mid}}
+                <input type="checkbox" v-model="card.open">
+            </label>
+            <button @click="shuffle">洗牌</button>
+            <h2>{{state}}</h2>
+        </div>
+        <div class="cards" :class="{gather: gather}">
+            <div class="card" v-for="card in cards" :class="{open: card.open}" :data-order="card.id" @click="openCard(card)">
+                <div class="face back"></div>
+                <div class="face front">{{getSymbol(card.label)}}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
